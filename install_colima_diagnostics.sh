@@ -93,7 +93,7 @@ sudo chmod 644 "$LOG_STDOUT"
 # ------------------------
 sudo mkdir -p /etc/newsyslog.d
 sudo bash -c "cat > $NEWSYSLOG_CONF" <<EOF
-$LOG_STDOUT root:wheel 644 6 0 2000000 ZT
+$LOG_STDOUT root:wheel 644 6 5M 0 Z
 EOF
 sudo chown root:wheel "$NEWSYSLOG_CONF"
 sudo chmod 644 "$NEWSYSLOG_CONF"
@@ -107,4 +107,4 @@ sudo launchctl start "$PLIST_NAME"
 
 echo "✅ Service '${PLIST_NAME}' installed and started."
 echo "📜 Logs: $LOG_STDOUT"
-echo "🔄 Rotates hourly, keeping last 6 hours."
+echo "🔄 Rotates every day or after 5MB file size, keeping last 6 log files."
