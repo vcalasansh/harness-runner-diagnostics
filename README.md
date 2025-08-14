@@ -2,7 +2,7 @@
 
 1. Check if the `colima_diagnostics.sh` script works:
 ```
-sudo ORIGINAL_USER="${SUDO_USER:-$USER}" COLIMA_PATH=$(sudo -u "${SUDO_USER:-$USER}" command -v rdctl) ./colima_diagnostics.sh
+sudo ORIGINAL_USER="${SUDO_USER:-$USER}" COLIMA_PATH=$(sudo -u "${SUDO_USER:-$USER}" command -v colima) ./colima_diagnostics.sh
 ```
 Make any necessary adjustments to the `colima_diagnostics.sh` script.
 
