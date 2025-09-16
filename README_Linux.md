@@ -111,31 +111,6 @@ sudo rm -rf /var/log/HarnessDockerDiagnostics/
 sudo systemctl daemon-reload
 ```
 
-## Differences from macOS version
-
-- **No Colima**: Directly monitors Docker daemon instead of Colima VM
-- **systemd instead of LaunchDaemon**: Uses systemd service and timer
-- **Linux-specific commands**: Uses `journalctl`, `systemctl`, `/proc` filesystem
-- **cgroups monitoring**: Checks both v1 and v2 cgroup CPU throttling
-- **Different paths**: Logs go to `/var/log/HarnessDockerDiagnostics/`
-- **Log rotation**: Uses `logrotate` instead of `newsyslog`
-
-## Troubleshooting
-
-### Docker not available
-If Docker is not installed or running:
-```bash
-# Install Docker (Ubuntu/Debian)
-sudo apt-get update
-sudo apt-get install docker.io
-
-# Install Docker (CentOS/RHEL)
-sudo yum install docker
-
-# Start and enable Docker
-sudo systemctl start docker
-sudo systemctl enable docker
-```
 
 ### Permission issues
 Make sure the script has execute permissions:
