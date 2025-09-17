@@ -60,8 +60,7 @@ docker system df 2>/dev/null || echo "Cannot get Docker system info"
 
 echo -e "\n--- Docker networks details ---"
 for net in $(docker network ls -q); do
-    docker network inspect --format \
-      '{{.Name}} | Driver={{.Driver}} | Scope={{.Scope}} | Created={{.Created}}' "$net"
+docker network inspect --format '{{.Name}} | Driver={{.Driver}} | Scope={{.Scope}} | Created={{.Created}}' "$net"
 done
 
 echo -e "\n--- Check if dockerd is running ---"
