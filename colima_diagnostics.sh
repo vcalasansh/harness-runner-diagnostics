@@ -52,6 +52,18 @@ sudo systemctl status docker --no-pager
 echo -e "\n--- Recent Docker daemon logs ---"
 sudo journalctl -u docker --since "2 minutes ago" --no-pager | tail -n 100
 
+echo -e "\n--- Docker containers ---"
+docker ps -a 2>/dev/null || echo "Cannot list Docker containers"
+
+echo -e "\n--- Docker system info ---"
+docker system df 2>/dev/null || echo "Cannot get Docker system info"
+
+echo -e "\n--- Docker networks details ---"
+for net in $(docker network ls -q); do
+    docker network inspect --format \
+      '{{.Name}} | Driver={{.Driver}} | Scope={{.Scope}} | Created={{.Created}}' "$net"
+done
+
 echo -e "\n--- Check if dockerd is running ---"
 pgrep -a dockerd || echo "dockerd not running"
 

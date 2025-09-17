@@ -52,6 +52,12 @@ docker ps -a 2>/dev/null || echo "Cannot list Docker containers"
 echo -e "\n--- Docker system info ---"
 docker system df 2>/dev/null || echo "Cannot get Docker system info"
 
+echo -e "\n--- Docker networks ---"
+for net in $(docker network ls -q); do
+    docker network inspect --format \
+      '{{.Name}} | Driver={{.Driver}} | Scope={{.Scope}} | Created={{.Created}}' "$net"
+done
+
 echo -e "\n--- File descriptor usage ---"
 echo "Open file descriptors in system: $(find /proc/*/fd -type l 2>/dev/null | wc -l)"
 echo "Max file descriptors: $(ulimit -n)"
